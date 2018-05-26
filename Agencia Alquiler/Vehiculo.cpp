@@ -43,14 +43,14 @@ bool Vehiculo::GetAlquilado(){
 }
 
 //Metodos
-void Vehiculo::AlquilarVehiculo(){
-	this -> alquilado = true;
-}
-
-void Vehiculo::DevolverVehiculo(){
+void Vehiculo::AlquilarVehiculo(int alquiler){
 	this -> alquilado = false;
 }
 
+void Vehiculo::DevolverVehiculo(int devolucion){
+	this -> alquilado = true;
+}
+
 void Vehiculo::ShowInfo(){
-	cout << "Informacion del Vehiculo: " << endl;
+	cout << "Informacion del Vehiculo" << endl;
 }

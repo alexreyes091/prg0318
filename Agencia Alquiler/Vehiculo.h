@@ -7,7 +7,7 @@
 using namespace std;
 
 class Vehiculo{
-	private:
+	protected:
 		//atributos
 		string matricula;
 		string vehiculo;
@@ -31,8 +31,8 @@ class Vehiculo{
 		bool GetAlquilado();
 		
 		//metodos
-		virtual void AlquilarVehiculo();
-		virtual void DevolverVehiculo();
+		virtual void AlquilarVehiculo(int);
+		virtual void DevolverVehiculo(int);
 		virtual void ShowInfo();
 	
 };

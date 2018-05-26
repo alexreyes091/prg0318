@@ -12,6 +12,7 @@ class Turismo : public Vehiculo{
 	private:
 		//atributos
 		double precioKm;
+		double totalPago;
 		int kmAlquiler;
 		int kmDevolucion;
 		int kmAcumulado;
