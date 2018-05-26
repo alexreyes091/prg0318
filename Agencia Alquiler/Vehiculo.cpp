@@ -6,12 +6,21 @@
 //Constructores y Destructores
 Vehiculo::Vehiculo(){}
 Vehiculo::~Vehiculo(){}
-Vehiculo::Vehiculo(string vehiculo, bool alquilado){
+Vehiculo::Vehiculo(string matriula, bool alquilado){
+	this -> SetMatricula(matricula);
+	this -> SetAlquilado(alquilado);
+}
+Vehiculo::Vehiculo(string matriula, string vehiculo, bool alquilado){
+	this -> SetMatricula(matricula);
 	this -> SetVehiculo(vehiculo);
 	this -> SetAlquilado(alquilado);
 }
 
 //Setters
+void Vehiculo::SetMatricula(string matricula){
+	this -> matricula = matricula;
+}
+
 void Vehiculo::SetVehiculo(string vehiculo){
 	this -> vehiculo = vehiculo;
 }
@@ -21,6 +30,10 @@ void Vehiculo::SetAlquilado(bool alquilado){
 }
 
 //Getters
+string Vehiculo::GetMatricula(){
+	return this -> matricula;
+}
+
 string Vehiculo::GetVehiculo(){
 	return this -> vehiculo;
 }

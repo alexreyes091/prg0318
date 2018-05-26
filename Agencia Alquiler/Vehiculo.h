@@ -9,6 +9,7 @@ using namespace std;
 class Vehiculo{
 	private:
 		//atributos
+		string matricula;
 		string vehiculo;
 		bool alquilado;
 		
@@ -16,13 +17,16 @@ class Vehiculo{
 		//constructores
 		Vehiculo();
 		Vehiculo(string, bool);
+		Vehiculo(string, string, bool);
 		~Vehiculo();
 		
 		//setters
+		void SetMatricula(string);
 		void SetVehiculo(string);
 		void SetAlquilado(bool);
 		
 		//getters
+		string GetMatricula();
 		string GetVehiculo();
 		bool GetAlquilado();
 		
