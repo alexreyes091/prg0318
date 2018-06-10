@@ -11,18 +11,19 @@ using namespace std;
 //Prototipo de Funciones
 void MenuPrincipal();
 //Creacion de Vehiculos
-Camion NuevoCamion();
-Turismo NuevoTurismo();
+void NuevoCamion();
+void NuevoTurismo();
 //Opciones de Vehiculos
 void AlquilarVehiculo();
 void DevolverVehiculo();
 void MostrarInformacionVehiculo();
 
+//Variables Globales
+vector <Vehiculo*> listaVehiculos;
+
 int main() {
 	system("color 0E"); //color de sistema
 	int op = 0;
-	vector <Vehiculo> listaVehiculos;
-	int obj = 0;
 	
 	MenuPrincipal();
 	cin >> op;
@@ -32,17 +33,23 @@ int main() {
 			
 			case 1: 
 				system("cls");
-				listaVehiculos.push_back(NuevoCamion());
-				obj++;
+				NuevoCamion();
 				system("pause");
+				system("cls");
 				break;
 			
 			case 2: 
 				system("cls");
-				listaVehiculos.push_back(NuevoTurismo());
-				obj++;
+				NuevoTurismo();
 				system("pause");
+				system("cls");
 				break;
+				
+			case 3:
+				system("cls");
+				AlquilarVehiculo();
+				system("pause");
+				system("cls");
 			
 			default:
 				cout << " Opcion no valida, intentelo nuevamente. " << endl;
@@ -54,12 +61,8 @@ int main() {
 		MenuPrincipal();
 		cin >> op;
 	}
-	
-	for(int i = 0; i < listaVehiculos.size(); i++)
-    {
-        listaVehiculos[i].ShowInfo();
-    }
-	
+    
+	listaVehiculos.clear(); //Limpia la lista del vector creada.
 	return 0;
 }
 
@@ -78,7 +81,7 @@ void MenuPrincipal(){
 	cout << " >> ";
 }
 
-Camion NuevoCamion(){
+void NuevoCamion(){
 	//Variables de registro
 	string vehiculo = "Camion", matricula; 
 	double precioDia;
@@ -90,13 +93,16 @@ Camion NuevoCamion(){
 	cout << " -> Precio por dia: "; cin >> precioDia;
 	
 	//Cargar Objeto;
-	Camion newCamion(matricula, false, precioDia);
+	Camion * newCamion = new Camion(matricula, false, precioDia);
 	
-	//Devolvemos el objeto creado;
-	return newCamion;
+	//Prueba de Carga
+	listaVehiculos.push_back(newCamion);
+	
+	//Limpia el objeto creado.
+	delete newCamion;
 }
 
-Turismo NuevoTurismo(){
+void NuevoTurismo(){
 	//Variables de registro
 	string vehiculo = "Turismo", matricula; 
 	double precioKm;
@@ -108,9 +114,49 @@ Turismo NuevoTurismo(){
 	cout << " -> Precio por Km: "; cin >> precioKm;
 	
 	//Cargar Objeto;
-	Turismo newTurismo(matricula, false, precioKm);
+	Turismo * newTurismo = new Turismo(matricula, false, precioKm);
 	
-	//Devolvemos el objeto creado;
-	return newTurismo;
+	//Prueba de Carga
+	listaVehiculos.push_back(newTurismo);
+	
+	//Limpia el objeto creado.
+	delete newTurismo;
+}
+
+/*********************************************************************
+En esta parte del codigo volvi a tener problemas, me guarda la info 
+*********************************************************************/
+void AlquilarVehiculo(){
+	string matricula;
+	
+	cout << "Alquiler de Vehiculo" << endl;
+	cout << "\nIngrese la Matricula del Vehiculo que desea alquilar: ";
+	cin >> matricula;
+	
+	for(int x=0; x < listaVehiculos.size(); x++){
+		
+		if(matricula == listaVehiculos[x] -> GetMatricula() && listaVehiculos[x] -> GetAlquilado() == true){
+			cout << "Lo siento el Vehiculo ya se encuentra alquilado." << endl;
+			system("pause");
+			return;
+		}
+		
+		if(matricula == listaVehiculos[x] -> GetMatricula() && listaVehiculos[x] -> GetAlquilado() == false){
+			listaVehiculos[x] -> SetAlquilado(true);
+			listaVehiculos[x] -> ShowInfo();
+			system("pause");
+			return;
+		}	
+	}
+	
+	cout << "Lo siento matricula no encontrada." << endl;
+}
+
+void DevolverVehiculo(){
+	
+}
+
+void MostrarInformacionVehiculo(){
+	
 }
 

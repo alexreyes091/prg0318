@@ -36,9 +36,9 @@ class Camion : public Vehiculo{
 		int GetDiaAcumulado();
 				
 		//metodos
-		void AlquilarVehiculo(int);
-		void DevolverVehiculo(int);
-		void ShowInfo();
+		virtual void AlquilarVehiculo(int);
+		virtual void DevolverVehiculo(int);
+		virtual void ShowInfo();
 	
 };
 

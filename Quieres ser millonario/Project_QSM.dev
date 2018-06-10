@@ -1,6 +1,6 @@
 [Project]
-FileName=Project_AGE.dev
-Name=Project2
+FileName=Project_QSM.dev
+Name=Project1
 Type=1
 Ver=2
 ObjFiles=
@@ -61,7 +61,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit2]
-FileName=Vehiculo.h
+FileName=Categorias.cpp
 CompileCpp=1
 Folder=
 Compile=1
@@ -71,7 +71,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit3]
-FileName=Vehiculo.cpp
+FileName=Categorias.h
 CompileCpp=1
 Folder=
 Compile=1
@@ -81,7 +81,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit4]
-FileName=Turismo.h
+FileName=Preguntas.h
 CompileCpp=1
 Folder=
 Compile=1
@@ -91,7 +91,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit5]
-FileName=Turismo.cpp
+FileName=Preguntas.cpp
 CompileCpp=1
 Folder=
 Compile=1
@@ -101,7 +101,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit6]
-FileName=Camion.h
+FileName=RespuestasOpcionales.h
 CompileCpp=1
 Folder=
 Compile=1
@@ -111,7 +111,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit7]
-FileName=Camion.cpp
+FileName=RespuestasOpcionales.cpp
 CompileCpp=1
 Folder=
 Compile=1
