@@ -18,7 +18,6 @@ class Inventario : public RegistroBase{
 		//constructores y destructores
 		Inventario();
 		~Inventario();
-		Inventario(string);
 		Inventario(string, string); //De la clase actual
 		Inventario(string, string, string, string, string);//De la clase heredada + la actual
 		//setters

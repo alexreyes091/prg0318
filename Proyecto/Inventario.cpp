@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include <vector>
 
@@ -9,9 +10,6 @@ using namespace std;
 //constructores y destructores
 Inventario::Inventario(){};
 Inventario::~Inventario(){};
-Inventario::Inventario(string codigo){
-	this -> SetCodigo(codigo);
-}
 Inventario::Inventario(string codigo, string descripcion){
 	this -> SetCodigo(codigo);
 	this -> SetDescripcion(descripcion);
@@ -41,18 +39,18 @@ bool Inventario::ValidarCodigo(string codigo, vector <Inventario *> newRegistro)
 	for(int x=0; x < newRegistro.size(); x++){	
 		if(newRegistro.size() != 0){		
 			if(codigo == newRegistro[x] -> GetCodigo()){
-				return true; //Returna verdadero si no lo encuentra
+				return true; //Retorna verdadero si lo encuentra
 			}
 		}else{	
 			return false;
 		}
 	}
-	return false; //Returno falso si no lo encuentra
+	return false; //Retorna falso si no lo encuentra
 }
 
 void Inventario::MostrarInfo(){ //Solo para fines de prueba
 	RegistroBase::MostrarInfo();
-	cout << "Codigo: " << this -> GetCodigo() << endl;
-	cout << "Descripcion: " << this -> GetDescripcion() << endl;
+	cout << setw(23) << "Codigo: " << this -> GetCodigo() << endl;
+	cout << setw(23) << "Descripcion: " << this -> GetDescripcion() << endl;
 }
 

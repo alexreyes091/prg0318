@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include <vector>
 
@@ -9,7 +10,9 @@ using namespace std;
 //constructores y destructores
 TipoProducto::TipoProducto(){};
 TipoProducto::~TipoProducto(){};
-TipoProducto::TipoProducto(string codigo) : Inventario(codigo){}
+TipoProducto::TipoProducto(string codigo, string descripcion, string tipoProducto) : Inventario(codigo, descripcion){
+	this -> SetTipoProducto(tipoProducto);
+}
 TipoProducto::TipoProducto(string usuario, string fecha, string tipoTransaccion, string codigo, string descripcion, string tipoProducto) : Inventario(usuario, fecha, tipoTransaccion, codigo, descripcion){
 	this -> SetTipoProducto(tipoProducto);
 }
@@ -27,16 +30,16 @@ bool TipoProducto::ValidarCodigo(string codigo, vector <TipoProducto *> newRegis
 	for(int x=0; x < newRegistro.size(); x++){	
 		if(newRegistro.size() != 0){		
 			if(codigo == newRegistro[x] -> GetCodigo()){
-				return true; //Returna verdadero si no lo encuentra
+				return true; //Retorna verdadero si lo encuentra
 			}
 		}else{	
 			return false;
 		}
 	}
-	return false; //Returno falso si no lo encuentra
+	return false; //Retorna falso si no lo encuentra
 }
 void TipoProducto::MostrarInfo(){ //Solo para fines de prueba
 	Inventario::MostrarInfo();
-	cout << "TipoProducto: " << this -> GetTipoProducto() << endl;
+	cout << setw(23) << "TipoProducto: " << this -> GetTipoProducto() << endl;
 }
 

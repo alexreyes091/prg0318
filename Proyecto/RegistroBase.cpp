@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <string>
 
 #include "RegistroBase.h"
@@ -38,8 +39,8 @@ string RegistroBase::GetTipoTransaccion(){
 //otros metodos
 void RegistroBase::MostrarInfo(){
 	cout << "--------------------------------------------" << endl;
-	cout << "Usuario: " << this -> GetUsuario() << endl;
-	cout << "Fecha: " << this -> GetFecha() << endl;
-	cout << "Tipo Transaccion: " << this -> GetTipoTransaccion() << endl;
+	cout << setw(23) << "Usuario: " << this -> GetUsuario() << endl;
+	cout << setw(23) << "Fecha: " << this -> GetFecha() << endl;
+	cout << setw(23) << "Tipo Transaccion: " << this -> GetTipoTransaccion() << endl;
 }
 

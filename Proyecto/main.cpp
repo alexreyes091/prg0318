@@ -2,25 +2,33 @@
 #include <string>
 
 #include "Inventario.h"
+#include "Producto.h"
 #include "TipoProducto.h"
 
 using namespace std;
 //Prototipos de Funcion
+
+/*
 void CargarRegistroInventario(Inventario * newRegistro);
 void CargarRegistroInventario(string usuario, string fecha, string tipoTransaccion, string codigo, string descripcion);
+*/
 
 //Registro tipos de Productos.
-void CargarRegistroTipoProducto(string usuario, string fecha, string tipoTransaccion, string codigo, string descripcion, string tipoProducto);
+void CargarRegistroTipoProducto(string, string, string, string, string, string);
+void CargarRegistroProducto(string, string, string, string, string, string, double, string, vector <TipoProducto *>);
 
 //Variables globales
-vector <Inventario * > registroInventario;
-vector <TipoProducto * > registroTipoProducto;
+//Vectores donde almacenaremos los datos
+//vector <Inventario * > registroInventario;
+vector <TipoProducto * > registroTipoProducto; 
+vector <Producto * > registroProducto;
 
 int main() {
 	
-	CargarRegistroTipoProducto("Areyes091", "2018/06/11", "Inventario", "KCR503", "Agujas Siliconadas", "Agujas");
+	CargarRegistroTipoProducto("Areyes091", "2018/06/11", "Inventario", "KCR508", "Agujas Siliconadas", "Agujas");
 	CargarRegistroTipoProducto("Areyes091", "2018/06/11", "Inventario", "KCR505", "Agujas Cromadas", "Agujas");
-	
+	CargarRegistroProducto("Areyes091", "2018/06/11", "Inventario", "G151260", "Droxemorfina", "Carel", 10.50, "KCR505", registroTipoProducto);
+	CargarRegistroProducto("Areyes091", "2018/06/11", "Inventario", "G151260", "Droxemorfina", "Carel", 15.30, "KCR505", registroTipoProducto);
 	/*
 	CargarRegistroInventario("Areyes091", "2018/06/11", "Inventario", "ASR0127", "Albondigas");
 	CargarRegistroInventario("Areyes091", "2018/06/11", "Inventario", "ASR0127", "Albondigas");
@@ -31,6 +39,10 @@ int main() {
 	CargarRegistroInventario(newRegistro2);
 	*/
 	
+	
+	for(int i=0; i < registroProducto.size(); i++){
+		registroProducto[i] -> MostrarInfo();
+	}
 	
 	for(int i=0; i < registroTipoProducto.size(); i++){
 		registroTipoProducto[i] -> MostrarInfo();
@@ -43,6 +55,7 @@ int main() {
 	
 	return 0;
 }
+/*
 //Funcion para registrar unicamente datos sencillos de Inventarios - Prueba
 void CargarRegistroInventario(string usuario, string fecha, string tipoTransaccion, string codigo, string descripcion){
 	
@@ -50,19 +63,6 @@ void CargarRegistroInventario(string usuario, string fecha, string tipoTransacci
 	
 	if(!newRegistro -> ValidarCodigo(newRegistro -> GetCodigo(), registroInventario)){ //Validamos si ya existe el codigo
 		registroInventario.push_back(newRegistro);
-		cout << "Registro guardado con exito" << endl;
-	}else{
-		cout << "Advertencia: El registro ya existe, por lo cual el dato no fue guardado" << endl;
-	}
-}
-
-//Funcion para registrar unicamente datos de Tipos de Productos
-void CargarRegistroTipoProducto(string usuario, string fecha, string tipoTransaccion, string codigo, string descripcion, string tipoProducto){
-	
-	TipoProducto * newRegistro = new TipoProducto(usuario, fecha, tipoTransaccion, codigo, descripcion, tipoProducto); //Registramos el objeto
-
-	if(!newRegistro -> ValidarCodigo(newRegistro -> GetCodigo(), registroTipoProducto)){ //Validamos si ya existe el codigo
-		registroTipoProducto.push_back(newRegistro);
 		cout << "Registro guardado con exito" << endl;
 	}else{
 		cout << "Advertencia: El registro ya existe, por lo cual el dato no fue guardado" << endl;
@@ -77,5 +77,37 @@ void CargarRegistroInventario(Inventario * newRegistro){
 		cout << "Registro guardado con exito" << endl;
 	}else{
 		cout << "Advertencia: El registro ya existe, por lo cual el dato no fue guardado" << endl;
+	}
+}
+*/
+
+//Funcion para registrar unicamente datos de Tipos de Productos
+void CargarRegistroTipoProducto(string usuario, string fecha, string tipoTransaccion, string codigo, string descripcion, string tipoProducto){
+	
+	TipoProducto * newRegistro = new TipoProducto(usuario, fecha, tipoTransaccion, codigo, descripcion, tipoProducto); //Registramos el objeto
+
+	if(!newRegistro -> ValidarCodigo(newRegistro -> GetCodigo(), registroTipoProducto)){ //Validamos si ya existe el codigo
+		registroTipoProducto.push_back(newRegistro);
+		cout << "Registro guardado con exito" << endl;
+	}else{
+		cout << "Advertencia: El registro ya existe, por lo cual el dato no fue guardado" << endl;
+	}
+}
+//Funcion para registrar nuevos productos
+void CargarRegistroProducto(string usuario, string fecha, string tipoTransaccion, string codigo, string descripcion, 
+							string marca, double precio, string codigoTipoProducto, vector <TipoProducto *> registro){
+	
+	Producto * newRegistro = new Producto(usuario, fecha, tipoTransaccion, codigo, descripcion, marca, precio, codigoTipoProducto, registro); //Registramos el objeto
+
+	if(!newRegistro -> ValidarCodigo(newRegistro -> GetCodigo(), registroProducto)){ //Validamos si ya existe el codigo
+		if(newRegistro -> GetValidarCodigoTipoProducto()){
+			registroProducto.push_back(newRegistro);
+			cout << "Registro guardado con exito" << endl;
+		}else{
+			cout << "Advertencia: El tipo de producto ingresado no existe." << endl;
+			cout << " -> Ingrese al modulo Tipo de Productos, en caso de que necesite registrar el codigo: " << codigo <<endl;
+		}
+	}else{
+		cout << "Advertencia: El registro ya existe, por lo cual el dato no fue guardado." << endl;
 	}
 }

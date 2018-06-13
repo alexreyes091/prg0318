@@ -5,28 +5,37 @@
 #include <string>
 #include <vector>
 
+#include "Inventario.h"
 #include "TipoProducto.h"
 
 using namespace std;
 
-class Producto : public TipoProducto{
+class Producto : public Inventario{
 	private:
 		string codigoTipoProducto;
-		string marcaProducto;
+		string marca;
+		double precio;
 		int existenciaBodegaPrincipal;
 		int existenciaBodegaEnfermeria;
+		bool validarCodigoTipoproducto;
 		
 	public:
 		//constructores y destructores
 		Producto();
 		~Producto();
-		Producto(string, string, string, string, string, string, string);//De la clase heredada + la actual
+		Producto(string, int, int); //De la clase actual
+		Producto(string, string, string, string, string, string, double, string, vector <TipoProducto *>);//De la clase heredada + la actual
 		//setters
-		void SetMarcaProducto(string);
+		void SetCodigoTipoProducto(string, vector <TipoProducto *>);
+		void SetMarca(string);
+		void SetPrecio(double);
 		void SetExistenciaBodegaPrincipal(int);
 		void SetExistenciaBodegaEnfermeria(int);
 		//getters
-		string GetMarcaProducto();
+		string GetCodigoTipoProducto();
+		bool GetValidarCodigoTipoProducto();
+		string GetMarca();
+		double GetPrecio();
 		int GetExistenciaBodegaPrincipal();
 		int GetExistenciaBodegaEnfermeria();
 		//otros metodos
@@ -34,4 +43,4 @@ class Producto : public TipoProducto{
 		virtual void MostrarInfo(); //Solo para fines de prueba
 };
 
-#endif //PPRODUCTO_HPP
+#endif //PRODUCTO_HPP
