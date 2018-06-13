@@ -9,6 +9,9 @@ using namespace std;
 //constructores y destructores
 Inventario::Inventario(){};
 Inventario::~Inventario(){};
+Inventario::Inventario(string codigo){
+	this -> SetCodigo(codigo);
+}
 Inventario::Inventario(string codigo, string descripcion){
 	this -> SetCodigo(codigo);
 	this -> SetDescripcion(descripcion);

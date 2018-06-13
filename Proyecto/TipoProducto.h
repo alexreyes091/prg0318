@@ -17,7 +17,7 @@ class TipoProducto : public Inventario{
 		//constructores y destructores
 		TipoProducto();
 		~TipoProducto();
-		TipoProducto(string, string, string); //De la clase actual
+		TipoProducto(string); //De la clase actual
 		TipoProducto(string, string, string, string, string, string);//De la clase heredada + la actual
 		//setters
 		void SetTipoProducto(string);

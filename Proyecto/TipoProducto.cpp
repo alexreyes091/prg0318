@@ -9,9 +9,7 @@ using namespace std;
 //constructores y destructores
 TipoProducto::TipoProducto(){};
 TipoProducto::~TipoProducto(){};
-TipoProducto::TipoProducto(string codigo, string descripcion, string tipoProducto) : Inventario(codigo, descripcion){
-	this -> SetTipoProducto(tipoProducto);
-}
+TipoProducto::TipoProducto(string codigo) : Inventario(codigo){}
 TipoProducto::TipoProducto(string usuario, string fecha, string tipoTransaccion, string codigo, string descripcion, string tipoProducto) : Inventario(usuario, fecha, tipoTransaccion, codigo, descripcion){
 	this -> SetTipoProducto(tipoProducto);
 }

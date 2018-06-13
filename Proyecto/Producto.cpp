@@ -9,28 +9,14 @@ using namespace std;
 //constructores y destructores
 Producto::Producto(){};
 Producto::~Producto(){};
-Producto::Producto(string marcaProducto, int existenciaBodegaPrincipal, int existenciaBodegaEnfermeria){
-	this -> SetMarcaProducto(marcaProducto);
-	this -> SetExistenciaBodegaPrincipal(existenciaBodegaPrincipal);
-	this -> SetExistenciaBodegaEnfermeria(existenciaBodegaEnfermeria);
-}
-Producto::Producto(string usuario, string fecha, string tipoTransaccion,  string codigo, string descripcion, string marcaProducto, string codigoTipoProducto,
-					vector <TipoProducto *> newRegistro) : Inventario(usuario, fecha, tipoTransaccion, codigo, descripcion){
-	this -> SetCodigoTipoProducto(codigoTipoProducto, newRegistro);
+Producto::Producto(string usuario, string fecha, string tipoTransaccion, string codigo, string descripcion, string marcaProducto, string codigoTipoProducto){
+	Inventario(usuario, fecha, tipoTransaccion, codigo, descripcion);
+	TipoProducto(codigoTipoProducto);
 	this -> SetMarcaProducto(marcaProducto);
 	this -> SetExistenciaBodegaPrincipal(0);
 	this -> SetExistenciaBodegaEnfermeria(0);
 }
 //setters
-void Producto::SetCodigoTipoProducto(string codigoTipoProducto, vector <TipoProducto *> newRegistro){
-	//se evalua si la categoria existe para enlazar los modulos
-	if(!TipoProducto::ValidarCodigo(codigoTipoProducto, newRegistro)){
-		this -> codigoTipoProducto = CodigoTipoProducto;
-	}else{
-		cout << "Codigo No existe" << endl;
-		this -> codigoTipoProducto = "No existe";
-	}
-}
 void Producto::SetMarcaProducto(string marcaProducto){
 	this -> marcaProducto = marcaProducto;
 }
@@ -41,9 +27,6 @@ void Producto::SetExistenciaBodegaEnfermeria(int existenciaBodegaEnfermeria){
 	this -> existenciaBodegaEnfermeria = existenciaBodegaEnfermeria;
 }
 //getters
-string Producto::GetCodigoTipoProducto(){
-	return this -> CodigoTipoProducto;
-}
 string Producto::GetMarcaProducto(){
 	return this -> marcaProducto;
 }
@@ -69,7 +52,6 @@ bool Producto::ValidarCodigo(string codigo, vector <Producto *> newRegistro){ //
 }
 void Producto::MostrarInfo(){ //Solo para fines de prueba
 	Inventario::MostrarInfo();
-	cout << "Codigo Tipo Producto: " << this -> GetCodigoTipoProducto() << endl;
 	cout << "Marca Producto: " << this -> GetMarcaProducto() << endl;
 	cout << "Existencia BP: " << this -> GetExistenciaBodegaPrincipal() << endl;
 	cout << "Existencia BE: " << this -> GetExistenciaBodegaEnfermeria() << endl;
