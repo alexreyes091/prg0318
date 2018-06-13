@@ -5,13 +5,14 @@
 #include <string>
 #include <vector>
 
+#include "Inventario.h"
 #include "TipoProducto.h"
 
 using namespace std;
 
-class Producto : public TipoProducto{
+class Producto : public Inventario{
 	private:
-		string nombreProducto;
+		string codigoTipoProducto;
 		string marcaProducto;
 		int existenciaBodegaPrincipal;
 		int existenciaBodegaEnfermeria;
@@ -20,15 +21,15 @@ class Producto : public TipoProducto{
 		//constructores y destructores
 		Producto();
 		~Producto();
-		Producto(string, string, int, int); //De la clase actual
-		Producto(string, string, string, string, string, string, string, string, int, int);//De la clase heredada + la actual
+		Producto(string, int, int); //De la clase actual
+		Producto(string, string, string, string, string, string, string, vector <TipoProducto *>);//De la clase heredada + la actual
 		//setters
-		void SetNombreProducto(string);
+		void SetCodigoTipoProducto(string, vector <TipoProducto *>);
 		void SetMarcaProducto(string);
 		void SetExistenciaBodegaPrincipal(int);
 		void SetExistenciaBodegaEnfermeria(int);
 		//getters
-		string GetNombreProducto();
+		string GetCodigoTipoProducto();
 		string GetMarcaProducto();
 		int GetExistenciaBodegaPrincipal();
 		int GetExistenciaBodegaEnfermeria;
