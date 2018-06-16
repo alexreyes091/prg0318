@@ -9,20 +9,12 @@
 
 using namespace std;
 
-class TipoProducto : public Inventario{
-	private:
-		string tipoProducto;
-	
+class TipoProducto : public Inventario{	
 	public:
 		//constructores y destructores
 		TipoProducto();
 		~TipoProducto();
-		TipoProducto(string, string, string); //De la clase actual
-		TipoProducto(string, string, string, string, string, string);//De la clase heredada + la actual
-		//setters
-		void SetTipoProducto(string);
-		//getters
-		string GetTipoProducto();
+		TipoProducto(string, string, string, string, string);//De la clase heredada + la actual
 		//otros metodos
 		virtual bool ValidarCodigo(string, vector <TipoProducto *>); //Valida si un codigo ya existe
 		virtual void MostrarInfo(); //Solo para fines de prueba

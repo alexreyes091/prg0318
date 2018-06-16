@@ -4,6 +4,8 @@
 #include "Inventario.h"
 #include "Producto.h"
 #include "TipoProducto.h"
+#include "BodegaPrincipal.h"
+#include "BodegaEnfermeria.h"
 
 using namespace std;
 //Prototipos de Funcion
@@ -14,7 +16,7 @@ void CargarRegistroInventario(string usuario, string fecha, string tipoTransacci
 */
 
 //Registro tipos de Productos.
-void CargarRegistroTipoProducto(string, string, string, string, string, string);
+void CargarRegistroTipoProducto(string, string, string, string, string);
 void CargarRegistroProducto(string, string, string, string, string, string, double, string, vector <TipoProducto *>);
 
 //Variables globales
@@ -22,13 +24,25 @@ void CargarRegistroProducto(string, string, string, string, string, string, doub
 //vector <Inventario * > registroInventario;
 vector <TipoProducto * > registroTipoProducto; 
 vector <Producto * > registroProducto;
+vector <BodegaPrincipal *> bodegaPrincipal;
+vector <BodegaEnfermeria *> bodegaEnfermeria;
 
 int main() {
 	
-	CargarRegistroTipoProducto("Areyes091", "2018/06/11", "Inventario", "KCR508", "Agujas Siliconadas", "Agujas");
-	CargarRegistroTipoProducto("Areyes091", "2018/06/11", "Inventario", "KCR505", "Agujas Cromadas", "Agujas");
+	CargarRegistroTipoProducto("Areyes091", "2018/06/11", "Inventario", "KCR508", "Agujas Siliconadas");
+	CargarRegistroTipoProducto("Areyes091", "2018/06/11", "Inventario", "KCR505", "Agujas Cromadas");
 	CargarRegistroProducto("Areyes091", "2018/06/11", "Inventario", "G151260", "Droxemorfina", "Carel", 10.50, "KCR505", registroTipoProducto);
 	CargarRegistroProducto("Areyes091", "2018/06/11", "Inventario", "G151260", "Droxemorfina", "Carel", 15.30, "KCR505", registroTipoProducto);
+	
+	BodegaPrincipal * newregistro = new BodegaPrincipal("BP01", "Bodega Principal", "G151260", 250, registroProducto);
+	
+	newregistro -> Transferencia(newregistro, bodegaPrincipal, bodegaEnfermeria);
+	
+	for(int i=0; i < bodegaPrincipal.size(); i++){
+		bodegaPrincipal[i] -> MostrarInfo();
+	}
+	
+	
 	/*
 	CargarRegistroInventario("Areyes091", "2018/06/11", "Inventario", "ASR0127", "Albondigas");
 	CargarRegistroInventario("Areyes091", "2018/06/11", "Inventario", "ASR0127", "Albondigas");
@@ -39,14 +53,14 @@ int main() {
 	CargarRegistroInventario(newRegistro2);
 	*/
 	
-	
+	/*
 	for(int i=0; i < registroProducto.size(); i++){
 		registroProducto[i] -> MostrarInfo();
 	}
 	
 	for(int i=0; i < registroTipoProducto.size(); i++){
 		registroTipoProducto[i] -> MostrarInfo();
-	}
+	}*/
 	
 	
 	//CargarRegistroInventario("Areyes091", "2018/06/11", "Inventario", "ASR00127", "Albondigas", registroInventario);	
@@ -82,9 +96,9 @@ void CargarRegistroInventario(Inventario * newRegistro){
 */
 
 //Funcion para registrar unicamente datos de Tipos de Productos
-void CargarRegistroTipoProducto(string usuario, string fecha, string tipoTransaccion, string codigo, string descripcion, string tipoProducto){
+void CargarRegistroTipoProducto(string usuario, string fecha, string tipoTransaccion, string codigo, string descripcion){
 	
-	TipoProducto * newRegistro = new TipoProducto(usuario, fecha, tipoTransaccion, codigo, descripcion, tipoProducto); //Registramos el objeto
+	TipoProducto * newRegistro = new TipoProducto(usuario, fecha, tipoTransaccion, codigo, descripcion); //Registramos el objeto
 
 	if(!newRegistro -> ValidarCodigo(newRegistro -> GetCodigo(), registroTipoProducto)){ //Validamos si ya existe el codigo
 		registroTipoProducto.push_back(newRegistro);

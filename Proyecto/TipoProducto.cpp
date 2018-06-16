@@ -10,20 +10,9 @@ using namespace std;
 //constructores y destructores
 TipoProducto::TipoProducto(){};
 TipoProducto::~TipoProducto(){};
-TipoProducto::TipoProducto(string codigo, string descripcion, string tipoProducto) : Inventario(codigo, descripcion){
-	this -> SetTipoProducto(tipoProducto);
-}
-TipoProducto::TipoProducto(string usuario, string fecha, string tipoTransaccion, string codigo, string descripcion, string tipoProducto) : Inventario(usuario, fecha, tipoTransaccion, codigo, descripcion){
-	this -> SetTipoProducto(tipoProducto);
-}
-//setters
-void TipoProducto::SetTipoProducto(string tipoProducto){
-	this -> tipoProducto = tipoProducto;
-}
-//getters
-string TipoProducto::GetTipoProducto(){
-	return this -> tipoProducto;
-}
+TipoProducto::TipoProducto(string usuario, string fecha, string tipoTransaccion, string codigo, string descripcion) 
+							: Inventario(usuario, fecha, tipoTransaccion, codigo, descripcion){}
+							
 //otros metodos
 bool TipoProducto::ValidarCodigo(string codigo, vector <TipoProducto *> newRegistro){ //Valida si un codigo ya existe
 
@@ -40,6 +29,5 @@ bool TipoProducto::ValidarCodigo(string codigo, vector <TipoProducto *> newRegis
 }
 void TipoProducto::MostrarInfo(){ //Solo para fines de prueba
 	Inventario::MostrarInfo();
-	cout << setw(23) << "TipoProducto: " << this -> GetTipoProducto() << endl;
 }
 
