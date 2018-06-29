@@ -20,9 +20,12 @@ class Bodega : public Inventario{
 		//constructores y destructores
 		Bodega();
 		~Bodega();
-		Bodega(string, string, string, int, vector <Producto *>);//De la clase heredada + la actual
+		Bodega(string, string);//Crear simplemente las bodegas
+		Bodega(string, string, string, int);//Crea el objeto que registrara en bodega.
+		Bodega(string, string, string, int, vector <Producto *>);//De la clase actual
 		Bodega(string, string, string, string, string, string, int, vector <Producto *>);//De la clase heredada + la actual
 		//setters
+		void SetCodigoProducto(string);
 		void SetCodigoProducto(string, vector <Producto *>);
 		void SetExistencia(int);
 		//getters
@@ -31,7 +34,14 @@ class Bodega : public Inventario{
 		int GetExistencia();
 		//otros metodos
 		virtual bool ValidarCodigo(string, vector <Producto *>); //Valida si un codigo ya existe
-		virtual void MostrarInfo(); //Solo para fines de prueba
+		bool ValidarCodigoProductoBodega(Bodega *, vector <Bodega *>); //Valida si el codigo esta en bodega
+		bool ValidarCodigoProductoBodega(Producto *, vector <Bodega *>); //Valida si el codigo esta en bodega
+		bool ValidarCantidadTraslado(int, int);
+	
+		void CargarProducto(Producto *, Bodega *, vector <Bodega *> &); //Cargamos productos a la bodega que deseamos
+		void Transferir(Producto *, vector <Bodega *> &, Bodega *, vector <Bodega *> &); //Tansferimos productos de una bodega a otra
+		
+		virtual void MostrarInfo(); //Solo para fines de pruebavoid Cargar()
 };
 
 #endif //BODEGA_HPP

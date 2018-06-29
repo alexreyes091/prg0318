@@ -4,7 +4,6 @@
 #include "Inventario.h"
 #include "Producto.h"
 #include "TipoProducto.h"
-#include "Bodega.h"
 #include "BodegaPrincipal.h"
 #include "BodegaEnfermeria.h"
 
@@ -17,7 +16,6 @@ void CargarRegistroInventario(string usuario, string fecha, string tipoTransacci
 */
 
 //Registro tipos de Productos.
-void CargarRegistroTipoBodega(string codigo, string descripcion);
 void CargarRegistroTipoProducto(string, string, string, string, string);
 void CargarRegistroProducto(string, string, string, string, string, string, double, string, vector <TipoProducto *>);
 
@@ -26,37 +24,23 @@ void CargarRegistroProducto(string, string, string, string, string, string, doub
 //vector <Inventario * > registroInventario;
 vector <TipoProducto * > registroTipoProducto; 
 vector <Producto * > registroProducto;
-vector <Bodega *> registroTipoBodega;
-vector <Bodega *> bodegaPrincipal;
-vector <Bodega *> bodegaEnfermeria;
+vector <BodegaPrincipal *> bodegaPrincipal;
+vector <BodegaEnfermeria *> bodegaEnfermeria;
 
 int main() {
-	CargarRegistroTipoBodega("BP01", "Principal"); //Creamos el tipo de Bodega Principal
-	CargarRegistroTipoBodega("BE01", "Enfermeria"); //creamos el tipo de Bodega Enfermeria
+	
 	CargarRegistroTipoProducto("Areyes091", "2018/06/11", "Inventario", "KCR508", "Agujas Siliconadas");
 	CargarRegistroTipoProducto("Areyes091", "2018/06/11", "Inventario", "KCR505", "Agujas Cromadas");
 	CargarRegistroProducto("Areyes091", "2018/06/11", "Inventario", "G151260", "Droxemorfina", "Carel", 10.50, "KCR505", registroTipoProducto);
-	CargarRegistroProducto("Areyes091", "2018/06/11", "Inventario", "G151261", "Droxemorfina", "Carel", 15.30, "KCR505", registroTipoProducto);
+	CargarRegistroProducto("Areyes091", "2018/06/11", "Inventario", "G151260", "Droxemorfina", "Carel", 15.30, "KCR505", registroTipoProducto);
 	
-		
-	Bodega * newRegistro = new Bodega();
-	//Bodega * newRegistro2 = new Bodega();
+	BodegaPrincipal * newregistro = new BodegaPrincipal("BP01", "Bodega Principal", "G151260", 250, registroProducto);
 	
-	newRegistro -> CargarProducto(registroProducto[0], registroTipoBodega[0], bodegaPrincipal);
-	newRegistro -> CargarProducto(registroProducto[1], registroTipoBodega[0], bodegaPrincipal);
-	
-	newRegistro -> Transferir(registroProducto[0], bodegaPrincipal, registroTipoBodega[1], bodegaEnfermeria);
-	
-
+	newregistro -> Transferencia(newregistro, bodegaPrincipal, bodegaEnfermeria);
 	
 	for(int i=0; i < bodegaPrincipal.size(); i++){
 		bodegaPrincipal[i] -> MostrarInfo();
 	}
-	
-	for(int i=0; i < bodegaEnfermeria.size(); i++){
-		bodegaEnfermeria[i] -> MostrarInfo();
-	}
-
 	
 	
 	/*
@@ -82,7 +66,7 @@ int main() {
 	//CargarRegistroInventario("Areyes091", "2018/06/11", "Inventario", "ASR00127", "Albondigas", registroInventario);	
 	//CargarRegistroInventario("Areyes091", "2018/06/11", "Inventario", "ASR00125", "Albondigas", registroInventario);
 	//CargarRegistroInventario("Areyes091", "2018/06/11", "Inventario", "ASR00125", "Albondigas", registroInventario);
-
+	
 	return 0;
 }
 /*
@@ -110,11 +94,6 @@ void CargarRegistroInventario(Inventario * newRegistro){
 	}
 }
 */
-//Funcion para registrar unicamente los datos de Tipos de Bodegas
-void CargarRegistroTipoBodega(string codigo, string descripcion){
-	Bodega * newRegistro = new Bodega(codigo, descripcion); //Registramos el objeto
-	registroTipoBodega.push_back(newRegistro); //Lo cargamos al vector
-}
 
 //Funcion para registrar unicamente datos de Tipos de Productos
 void CargarRegistroTipoProducto(string usuario, string fecha, string tipoTransaccion, string codigo, string descripcion){
@@ -146,4 +125,3 @@ void CargarRegistroProducto(string usuario, string fecha, string tipoTransaccion
 		cout << "Advertencia: El registro ya existe, por lo cual el dato no fue guardado." << endl;
 	}
 }
-
