@@ -50,7 +50,9 @@ bool Inventario::ValidarCodigo(string codigo, vector <Inventario *> newRegistro)
 
 void Inventario::MostrarInfo(){ //Solo para fines de prueba
 	RegistroBase::MostrarInfo();
-	cout << setw(23) << "Codigo: " << this -> GetCodigo() << endl;
-	cout << setw(23) << "Descripcion: " << this -> GetDescripcion() << endl;
+	cout << " -- " << endl;
+	cout << left << setw(15) << " | Codigo: " << left << setw(20) << " | Descripcion: " << endl;
+	cout << left << " - " << setw(12) << this -> GetCodigo();
+	cout << left << " - " << setw(17) << this -> GetDescripcion() << endl;
 }
 

@@ -32,8 +32,14 @@ class Producto : public Inventario{
 		string GetMarca();
 		double GetPrecio();
 		//otros metodos
+		//Validaciones
 		virtual bool ValidarCodigo(string, vector <Producto *>); //Valida si un codigo ya existe
+		//Acciones posibles
+		void BuscarProducto(string, vector <Producto *>);
+		void CargarProducto(Producto *, vector <Producto *> &);
+		void EliminarProducto(string, vector <Producto *> &);
 		virtual void MostrarInfo(); //Solo para fines de prueba
+		virtual void MostrarInfo(vector <Producto *>);
 };
 
 #endif //PRODUCTO_HPP

@@ -38,9 +38,12 @@ string RegistroBase::GetTipoTransaccion(){
 }
 //otros metodos
 void RegistroBase::MostrarInfo(){
-	cout << "--------------------------------------------" << endl;
-	cout << setw(23) << "Usuario: " << this -> GetUsuario() << endl;
-	cout << setw(23) << "Fecha: " << this -> GetFecha() << endl;
-	cout << setw(23) << "Tipo Transaccion: " << this -> GetTipoTransaccion() << endl;
+	cout << "\n | REGISTRO:" << endl;
+	cout << " -----------"<< endl;
+	cout << left << setw(15) << " | Usuario: " << left << setw(20) << " | Fecha: " << left << setw(30) << " | Tipo Transaccion: " << endl;
+	cout << left << " - " << setw(12) << this -> GetUsuario();
+	cout << left << " - " << setw(17) << this -> GetFecha();
+	cout << left << " - " << setw(27
+	) << this -> GetTipoTransaccion() << endl;
 }
 
