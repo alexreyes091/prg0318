@@ -95,6 +95,7 @@ void Producto::BuscarProducto(string codigoProducto, vector <Producto *> registr
 			cout << " -- " << endl;
 			cout << " * Buscar Codigo: "; cin >> codigoProducto;
 			cout << " -- " << endl;
+			codEncontrado = false;
 		}
 	}
 	
@@ -159,14 +160,19 @@ void Producto::EliminarProducto(string codigoProducto, vector <Producto *> &regi
 	}
 }
 void Producto::MostrarInfo(vector <Producto *> registroProducto){
+	cout << "\n | REGISTRO PRODUCTOS:" << endl;
+	cout << " ----------------------"<< endl;
 	cout << setw(10) << " | Codigo: " << setw(20) << " | Descripcion: ";
 	cout << setw(15) << " | Codigo TP: " << setw(15) << " | Marca: " << setw(10) << " | Precio: "<< endl;
+	cout << " -- " << endl;
 	for(int x=0; x < registroProducto.size(); x++){
-		cout << setw(10) << registroProducto[x] -> GetCodigo() << setw(20) << registroProducto[x] -> GetDescripcion();
-		cout << setw(15) << registroProducto[x] -> GetCodigoTipoProducto() << setw(15) << registroProducto[x] -> GetMarca();
-		cout << setw(10) << registroProducto[x] -> GetPrecio() << endl;
+		cout << left << " - " << setw(8) << registroProducto[x] -> GetCodigo();
+		cout << left << " - " << setw(18) << registroProducto[x] -> GetDescripcion();
+		cout << left << " - " << setw(13) << registroProducto[x] -> GetCodigoTipoProducto(); 
+		cout << left << " - " << setw(13) << registroProducto[x] -> GetMarca();
+		cout << left << " - " << setw(8) << registroProducto[x] -> GetPrecio() << endl;
 	}
-	
+	cout << " ------------------------------------------------------------------------" << endl;
 }
 void Producto::MostrarInfo(){ //Solo para fines de prueba
 	Inventario::MostrarInfo();

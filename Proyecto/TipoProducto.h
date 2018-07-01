@@ -16,7 +16,13 @@ class TipoProducto : public Inventario{
 		~TipoProducto();
 		TipoProducto(string, string, string, string, string);//De la clase heredada + la actual
 		//otros metodos
+		//Validaciones
 		virtual bool ValidarCodigo(string, vector <TipoProducto *>); //Valida si un codigo ya existe
+		//Acciones disponibles
+		void BuscarTipoProducto(string, vector <TipoProducto *>);
+		void CargarTipoProducto(TipoProducto *, vector <TipoProducto *> &);
+		void EliminarTipoProducto(string, vector <TipoProducto *> &);
+		virtual void MostrarInfo(vector <TipoProducto *>); 
 		virtual void MostrarInfo(); //Solo para fines de prueba
 };
 
